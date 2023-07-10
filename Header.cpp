@@ -23,8 +23,8 @@ void svg_begin(double width, double height) {
     cout << "xmlns='http://www.w3.org/2000/svg'>\n";
 }
 
-void svg_text(double left, double baseline, string text, int font_size) {
-    cout << "<text x='" << left << "' y='" << baseline << "' font-size='" << font_size << "'>" << text << "</text>" << endl;
+string svg_text(double left, double baseline, string text, int font_size) {
+    return "<text x='" + to_string(left) + "' y='" + to_string(baseline) + "' font-size='" + to_string(font_size) + "'>" + text + "</text>" + '\n';
 }
 
 void svg_rect(double x, double y, double width, double height, string stroke, string fill) {
