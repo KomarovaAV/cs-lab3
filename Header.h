@@ -12,3 +12,4 @@ void svg_rect(double x, double y, double width, double height, string stroke = "
 void show_histogram_text(const vector<size_t>& bins);
 void show_histogram_svg(const vector<size_t>bins, int font_size);
 int get_font_size();
+vector<size_t> make_histogram(const vector<double>& numbers, size_t bin_count);
