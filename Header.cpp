@@ -23,8 +23,8 @@ void svg_begin(double width, double height) {
     cout << "xmlns='http://www.w3.org/2000/svg'>\n";
 }
 
-void svg_text(double left, double baseline, string text) {
-    cout << "<text x='" << left << "' y='" << baseline << "'> " << text << "</text>" << '\n';
+void svg_text(double left, double baseline, string text, int font_size) {
+    cout << "<text x='" << left << "' y='" << baseline << "' font-size='" << font_size << "'>" << text << "</text>" << endl;
 }
 
 void svg_rect(double x, double y, double width, double height, string stroke, string fill) {
@@ -34,7 +34,7 @@ void svg_rect(double x, double y, double width, double height, string stroke, st
 void svg_end() {
     cout << "</svg>\n";
 }
-void show_histogram_svg(const vector<size_t>bins) {
+void show_histogram_svg(const vector<size_t>bins, int font_size) {
     const auto IMAGE_WIDTH = 1000;
     const auto IMAGE_HEIGHT = 500;
     const auto TEXT_LEFT = 20;
@@ -62,9 +62,24 @@ void show_histogram_svg(const vector<size_t>bins) {
             bin_width = BLOCK_WIDTH * bin / (max_bin / BINS_LIM);
         else
             bin_width = BLOCK_WIDTH * bin;
-        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
+        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin), font_size);
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT);
         top += BIN_HEIGHT;
     }
     svg_end();
+}
+int get_font_size() {
+    int font_size = 12;
+    while (true) {
+        cerr << "Enter font size (8-32): ";
+        cin >> font_size;
+
+        if (font_size >= 8 && font_size <= 32) {
+            break;
+        }
+        else {
+            cerr << "Invalid font size. Please enter a value between 8 and 32." << endl;
+        }
+    }
+    return font_size;
 }
